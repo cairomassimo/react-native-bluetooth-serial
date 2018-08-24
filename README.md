@@ -1,3 +1,10 @@
+### Fork changes **(The original [repository](https://github.com/rusel1989/react-native-bluetooth-serial/) was abandoned)**
+
+- Resolved [The SDK Build Tools revision (23.0.1) is too low ... #72](https://github.com/rusel1989/react-native-bluetooth-serial/issues/72)
+- Resolved [error: method does not override ... #67](https://github.com/rusel1989/react-native-bluetooth-serial/issues/67) 
+- Resolved Example not working [#21](https://github.com/rusel1989/react-native-bluetooth-serial/issues/21) [#45](https://github.com/rusel1989/react-native-bluetooth-serial/issues/45)
+
+
 ## React Native Bluetooth Serial
 
 React Native version of [BluetoothSerial](https://github.com/don/BluetoothSerial) plugin. For both
@@ -48,6 +55,8 @@ to run the example on actual device.
 2. `cd react-native-bluetooth-serial/BluetoothSerialExample`
 3. `npm i`
 4. `react-native run-ios/run-android`
+
+<img src="https://github.com/jhonber/react-native-bluetooth-serial/raw/master/docs/images/pic2.png" width="20%"> <img src="https://github.com/jhonber/react-native-bluetooth-serial/raw/master/docs/images/pic1.png" width="20%">
 
 # Reading and writing
 In Android after you connect to peripheral `write` and `read` methods should work for most of devices out of the box.
