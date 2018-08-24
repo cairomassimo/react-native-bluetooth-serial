@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   View,
-  Modal,
   ActivityIndicator,
   Image
 } from 'react-native'
@@ -78,8 +77,23 @@ class BluetoothSerialExample extends Component {
       this.setState({ isEnabled, devices })
     })
 
-    BluetoothSerial.on('bluetoothEnabled', () => Toast.showShortBottom('Bluetooth enabled'))
-    BluetoothSerial.on('bluetoothDisabled', () => Toast.showShortBottom('Bluetooth disabled'))
+    BluetoothSerial.on('bluetoothEnabled', () => {
+      Toast.showShortBottom('Bluetooth enabled')
+      Promise.all([
+        BluetoothSerial.isEnabled(),
+        BluetoothSerial.list()
+      ])
+      .then((values) => {
+        const [ isEnabled, devices ] = values
+        this.setState({ isEnabled, devices })
+      })
+    })
+
+    BluetoothSerial.on('bluetoothDisabled', () => {
+      Toast.showShortBottom('Bluetooth disabled')
+      this.setState({ devices: [] })
+    })
+
     BluetoothSerial.on('error', (err) => console.log(`Error: ${err.message}`))
     BluetoothSerial.on('connectionLost', () => {
       if (this.state.device) {
@@ -308,7 +322,6 @@ class BluetoothSerialExample extends Component {
             onDevicePress={(device) => this.onDevicePress(device)} />
         )}
 
-
         <View style={{ alignSelf: 'flex-end', height: 52 }}>
           <ScrollView
             horizontal
@@ -417,4 +430,3 @@ const styles = StyleSheet.create({
 })
 
 export default BluetoothSerialExample
-
