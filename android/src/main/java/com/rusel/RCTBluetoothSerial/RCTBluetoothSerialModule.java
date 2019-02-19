@@ -1,6 +1,9 @@
 package com.rusel.RCTBluetoothSerial;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import javax.annotation.Nullable;
 
@@ -378,7 +381,7 @@ public class RCTBluetoothSerialModule extends ReactContextBaseJavaModule impleme
         int length = mBuffer.length();
         String data = mBuffer.substring(0, length);
         mBuffer.delete(0, length);
-        promise.resolve(data);
+        promise.resolve(Base64.encodeToString(data.getBytes(StandardCharsets.ISO_8859_1), Base64.DEFAULT));
     }
 
     @ReactMethod

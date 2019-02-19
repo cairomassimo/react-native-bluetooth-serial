@@ -34,4 +34,13 @@ BluetoothSerial.write = (data) => {
   return BluetoothSerial.writeToDevice(data.toString('base64'))
 }
 
+/**
+ * Read all the data currently in the buffer.
+ * We must convert to base64 in RN there is no way to pass buffer directly
+ * @return {Promise<Buffer>}
+ */
+BluetoothSerial.read = async () => {
+  return Buffer.from(await BluetoothSerial.readFromDevice(), 'base64');
+}
+
 module.exports = BluetoothSerial
